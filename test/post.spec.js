@@ -13,4 +13,22 @@ describe('Test to post service', () => {
         const userInDb = await database.User.findOne({ username: 'testing' });
         assert(userInDb);
     });
+
+    it('should return 400 is username is not given', async() => {
+        await agent
+            .post('/user')
+            .send({
+                birthday: Date.UTC(2016, 0, 1).toString()
+            })
+            .expect(400);
+    });
+
+    it('should return 400 if birthday is not given', async() => {
+        await agent
+            .post('/user')
+            .send({
+                username: 'testing',
+            })
+            .expect(400);
+    });
 });

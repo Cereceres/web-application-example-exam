@@ -18,12 +18,13 @@ router.get('/user/:id?',
                 id: joi.string()
             })
     ),
-    validator.query(
-        joi
-            .object()
-            .pattern(/.*/, joi.any())
-            .min(1)
-    ),
+    (req, res, next) => {
+        if(!req.params.id && !Object.keys(req.query).length) return res
+            .status(400)
+            .send(new Error('Bad query'));
+
+        next();
+    },
     get);
 router.put('/user/:id?',
     validator.body(
@@ -41,12 +42,11 @@ router.put('/user/:id?',
                 id: joi.string()
             })
     ),
-    validator.query(
-        joi
-            .object()
-            .pattern(/.*/, joi.any())
-            .min(1)
-    ),
+    (req, res, next) => {
+        if(!req.params.id && !Object.keys(req.query).length) return next(new Error('Bad query'));
+
+        next();
+    },
     put);
 router.delete('/user/:id?',
     validator.params(
@@ -56,12 +56,12 @@ router.delete('/user/:id?',
                 id: joi.string()
             })
     ),
-    validator.query(
-        joi
-            .object()
-            .pattern(/.*/, joi.any())
-            .min(1)
-    ), remove);
+    (req, res, next) => {
+        if(!req.params.id && !Object.keys(req.query).length) return next(new Error('Bad query'));
+
+        next();
+    },
+    remove);
 router.post('/user',
     validator.body(
         joi
