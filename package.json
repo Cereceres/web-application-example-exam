@@ -1,0 +1,29 @@
+{
+  "name": "web-application-example-exam",
+  "version": "1.0.0",
+  "description": "web application to exam from TRATO",
+  "main": "index.js",
+  "scripts": {
+    "test": "PORT=3003 mocha test --exit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cereceres/web-application-example-exam.git"
+  },
+  "author": "Jesus Cereceres",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cereceres/web-application-example-exam/issues"
+  },
+  "homepage": "https://github.com/Cereceres/web-application-example-exam#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "express-joi-validation": "^0.2.1",
+    "joi": "^13.2.0",
+    "mysql": "^2.15.0",
+    "mysql2": "^1.5.3",
+    "sequelize": "^4.37.6",
+    "supertest": "^3.0.0"
+  }
+}
