@@ -1,4 +1,4 @@
-const { User } = require('../lib/db');
+const { User } = require('../../lib/db');
 
 
 module.exports = async(req, res) => {

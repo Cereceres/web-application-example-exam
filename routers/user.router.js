@@ -2,10 +2,10 @@ const express = require('express');
 const joiValidator = require('express-joi-validation');
 const joi = require('joi');
 
-const post = require('../controllers/post');
-const remove = require('../controllers/delete');
-const put = require('../controllers/put');
-const get = require('../controllers/get');
+const post = require('../controllers/user/user.post');
+const remove = require('../controllers/user/user.delete');
+const put = require('../controllers/user/user.put');
+const get = require('../controllers/user/user.get');
 
 const router = express.Router();
 const validator = joiValidator({});

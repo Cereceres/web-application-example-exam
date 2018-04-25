@@ -1,9 +1,10 @@
-const { User } = require('../lib/db');
+const { User } = require('../../lib/db');
 
 
 module.exports = async(req, res) => {
     const query = Object.keys(req.query).length ? req.query : req.params;
-    console.log(' query ', query);
-    const user = await User.findOne(query);
+    const userToUpdate = req.body;
+    const user = await User.update(query, userToUpdate);
     res.send(user);
 };
+

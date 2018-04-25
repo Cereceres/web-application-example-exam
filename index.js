@@ -10,13 +10,13 @@ const { PORT: port = 3000 } = process.env;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use('/', router);
-console.log('addres ', app.address);
-module.exports = {
+const server = module.exports = {
     app,
     startApp : async() => {
         await database.connect();
-        app.listen(port, () => console.log('server is init'));
-        console.log('addres ', app.address);
-        return app;
+        app.listen(port, () => console.log(`server is init in port ${ port }`));
+        return server;
     }
 };
+
+if (!module.parent) server.startApp();
