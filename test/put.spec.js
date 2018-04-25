@@ -19,4 +19,26 @@ describe('Test to put service ', () => {
         const userUpdated = await database.User.findOne({ id:user.id });
         assert(userUpdated.username === 'testing put updated');
     });
+
+    it('should update the user in db is id is send in path params', async() => {
+        const data = {
+            username: 'testing put',
+            birthday: new Date(2016, 0, 1).toString()
+        };
+        const user = await database.User.create(data);
+        await agent
+            .put(`/user/${user.id}`)
+            .send({
+                username: 'testing put updated',
+            })
+            .expect(200);
+        const userUpdated = await database.User.findOne({ id:user.id });
+        assert(userUpdated.username === 'testing put updated');
+    });
+
+    it('should update the user in db is id is send in path params', async() => {
+        await agent
+            .put('/user')
+            .expect(400);
+    });
 });

@@ -26,7 +26,6 @@ describe('Test to get service', () => {
         const res = await agent
             .get(`/user/${user.id}`)
             .expect(200);
-        console.log('res.body ', res.body, user.id);
         assert(res.body.id === user.id);
     });
 

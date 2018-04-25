@@ -2,7 +2,7 @@ const assert = require('assert');
 
 const database = require('../lib/db');
 
-describe('Test to delete service ', () => {
+describe('Test to get service ', () => {
     it('should update the active property to false is user remove', async() => {
         const data = {
             username: 'testing delete',
@@ -15,5 +15,11 @@ describe('Test to delete service ', () => {
             .expect(200);
         const userUpdated = await database.User.findOne({ id:user.id });
         assert(userUpdated.active === false);
+    });
+
+    it('should return 400 if params id and query is not given', async() => {
+        await agent
+            .delete('/user')
+            .expect(400);
     });
 });

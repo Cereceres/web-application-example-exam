@@ -43,8 +43,9 @@ router.put('/user/:id?',
             })
     ),
     (req, res, next) => {
-        if(!req.params.id && !Object.keys(req.query).length) return next(new Error('Bad query'));
-
+        if(!req.params.id && !Object.keys(req.query).length) return res
+            .status(400)
+            .send(new Error('Bad query'));
         next();
     },
     put);
@@ -57,8 +58,9 @@ router.delete('/user/:id?',
             })
     ),
     (req, res, next) => {
-        if(!req.params.id && !Object.keys(req.query).length) return next(new Error('Bad query'));
-
+        if(!req.params.id && !Object.keys(req.query).length) return res
+            .status(400)
+            .send(new Error('Bad query'));
         next();
     },
     remove);
