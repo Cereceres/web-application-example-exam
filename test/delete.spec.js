@@ -11,15 +11,29 @@ describe('Test to get service ', () => {
         const user = await database.User.create(data);
         await agent
             .delete('/user')
+            .set({ Authorization: `Bearer ${token}` })
             .query({ id: user.id })
             .expect(200);
         const userUpdated = await database.User.findOne({ id:user.id });
         assert(userUpdated.active === false);
     });
 
+    it('should return 400 is token is not send', async() => {
+        const data = {
+            username: 'testing delete',
+            birthday: new Date(2016, 0, 1).toString()
+        };
+        const user = await database.User.create(data);
+        await agent
+            .delete('/user')
+            .query({ id: user.id })
+            .expect(401);
+    });
+
     it('should return 400 if params id and query is not given', async() => {
         await agent
             .delete('/user')
+            .set({ Authorization: `Bearer ${token}` })
             .expect(400);
     });
 });
