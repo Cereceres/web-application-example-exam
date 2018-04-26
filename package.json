@@ -24,6 +24,7 @@
     "express-unless": "^0.5.0",
     "joi": "^13.2.0",
     "jsonwebtoken": "^8.2.1",
+    "morgan": "^1.9.0",
     "mysql": "^2.15.0",
     "mysql2": "^1.5.3",
     "sequelize": "^4.37.6",

@@ -2,11 +2,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const jwt = require('./lib/auth-middleware');
 const database = require('./lib/db');
+const morgan = require('morgan');
 const userRouter = require('./routers/user.router');
 const userAuth = require('./routers/auth.router');
 const app = express();
 const { PORT: port = 3000 } = process.env;
-
+app.use(morgan('combined'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(jwt());
